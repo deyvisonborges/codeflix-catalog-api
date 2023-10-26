@@ -41,7 +41,7 @@ export class Category {
   // A diferenca que o setter é anemico e representa somente uma mudanca de valor
   // o Changename estar representando uma operacao que vai alem de uma simples mudanca
   // aplicando validacoes, eventos e outros
-  changeName(name: string): void {
+  public changeName(name: string): void {
     this.name = name;
   }
 

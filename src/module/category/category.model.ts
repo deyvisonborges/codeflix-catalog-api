@@ -8,7 +8,7 @@ export type CategoryModelType = {
 export class CategoryModel implements CategoryModelType {
   name: string;
   description: string;
-  uuid: string;
+  id: string;
   createdAt?: Date;
   updatedAt?: Date;
   isActive?: boolean;

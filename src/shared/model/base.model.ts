@@ -1,6 +1,10 @@
 export type BaseModelType = {
-  uuid: string;
+  id: string;
   createdAt?: Date;
   updatedAt?: Date;
   isActive?: boolean;
 };
+
+export abstract class BaseModel {
+  abstract get id(): string;
+}

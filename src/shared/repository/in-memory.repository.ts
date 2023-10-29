@@ -1,8 +1,8 @@
 import { BaseModel } from '../model/base.model';
-import { BaseRepositoryRules } from './rules/base.repository.rules';
+import { BaseRepositoryTypes } from './base.repository.type';
 
 export abstract class InMemoryRepository<E extends BaseModel>
-  implements BaseRepositoryRules<E>
+  implements BaseRepositoryTypes<E>
 {
   items: E[] = [];
 

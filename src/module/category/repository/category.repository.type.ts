@@ -1,4 +1,4 @@
-import { BaseRepositoryRules } from 'src/shared/repository/rules/base.repository.rules';
+import { BaseRepositoryTypes } from 'src/shared/repository/base.repository.type';
 import { CategoryModel } from '../category.model';
 
-export type CategoryRepositoryType = BaseRepositoryRules<CategoryModel>;
+export type CategoryRepositoryTypes = BaseRepositoryTypes<CategoryModel>;

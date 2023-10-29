@@ -7,5 +7,4 @@ export interface BaseRepositoryRules<E extends BaseModel> {
   delete(entityId: string): Promise<void>;
   findById(entityId: string): Promise<E | null>;
   findAll(): Promise<E[]>;
-  getEntity(): new (...args: any[]) => E;
 }

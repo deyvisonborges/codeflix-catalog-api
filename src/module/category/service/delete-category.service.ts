@@ -1,6 +1,6 @@
-import { BaseService } from 'src/shared/service/base.service';
+import { BaseService } from '../../../shared/service/base.service';
 import { CategoryProps } from '../category.model';
-import { UUID } from 'src/shared/model/uuid.model';
+import { UUID } from '../../../shared/model/uuid.model';
 import { CategoryRepository } from '../repository/category.repository';
 
 type Input = Required<Pick<CategoryProps, `id`>>;

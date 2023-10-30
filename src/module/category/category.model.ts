@@ -15,10 +15,20 @@ export class CategoryModel implements CategoryProps {
   isActive?: boolean;
 
   constructor(props: CategoryProps) {
-    this.id = props.id || new UUID().id;
+    this.id = props.id || new UUID().toString();
     this.createdAt = props.createdAt ?? new Date();
     this.isActive = props.isActive ?? true;
     Object.assign(this, props);
+  }
+
+  changeProperty<K extends keyof this, V extends this[K]>(
+    key: K,
+    value: V,
+  ): this {
+    if (key in this) {
+      this[key] = value;
+    }
+    return this;
   }
 
   static create(props: CategoryProps): CategoryModel {

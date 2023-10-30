@@ -1,7 +1,7 @@
 import { v4 as uuidv4, validate as uuidValidate } from 'uuid';
 
 export class UUID {
-  readonly id: string;
+  private readonly id: string;
 
   constructor(id?: string) {
     this.id = id || uuidv4();
@@ -13,6 +13,10 @@ export class UUID {
     if (!isValid) {
       throw new InvalidUuidError();
     }
+  }
+
+  toString() {
+    return this.id;
   }
 }
 

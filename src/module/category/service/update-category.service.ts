@@ -2,7 +2,6 @@ import { BaseService } from '../../../shared/service/base.service';
 import { CategoryProps } from '../category.model';
 import { UUID } from '../../../shared/model/uuid.model';
 import { CategoryRepository } from '../repository/category.repository';
-import { responseMapper } from '../../../shared/util/response.mapper';
 
 type UpdateCategoryInput = Partial<CategoryProps> & { id: string };
 type UpdateCategoryOutput = CategoryProps;

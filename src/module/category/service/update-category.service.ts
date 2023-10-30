@@ -1,10 +1,10 @@
-import { BaseService } from 'src/shared/service/base.service';
-import { CategoryModel, CategoryProps } from '../category.model';
-import { UUID } from 'src/shared/model/uuid.model';
+import { BaseService } from '../../../shared/service/base.service';
+import { CategoryProps } from '../category.model';
+import { UUID } from '../../../shared/model/uuid.model';
 import { CategoryRepository } from '../repository/category.repository';
-import { responseMapper } from 'src/shared/util/response.mapper';
+import { responseMapper } from '../../../shared/util/response.mapper';
 
-type UpdateCategoryInput = Partial<CategoryModel>;
+type UpdateCategoryInput = Partial<CategoryProps> & { id: string };
 type UpdateCategoryOutput = CategoryProps;
 
 export class UpdateCategoryService
@@ -36,12 +36,20 @@ export class UpdateCategoryService
 
     await this.categoryRepo.update(category);
 
-    return responseMapper<UpdateCategoryOutput>({
+    // return responseMapper<UpdateCategoryOutput>({
+    //   id: category.id,
+    //   description: category.description,
+    //   name: category.name,
+    //   isActive: category.isActive,
+    //   createdAt: category.createdAt,
+    // });
+
+    return {
       id: category.id,
       description: category.description,
       name: category.name,
       isActive: category.isActive,
       createdAt: category.createdAt,
-    });
+    };
   }
 }

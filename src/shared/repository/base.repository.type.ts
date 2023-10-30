@@ -1,6 +1,4 @@
-import { BaseModel } from 'src/shared/model/base.model';
-
-export interface BaseRepositoryTypes<E extends BaseModel> {
+export interface BaseRepositoryTypes<E> {
   insert(entity: E): Promise<void>;
   createMany(entity: E[]): Promise<void>;
   update(entity: E): Promise<void>;
@@ -9,11 +7,8 @@ export interface BaseRepositoryTypes<E extends BaseModel> {
   findAll(): Promise<E[]>;
 }
 
-export interface SearchableRepository<
-  E extends BaseModel,
-  SearchInput,
-  SearchOutput,
-> extends BaseRepositoryTypes<E> {
+export interface SearchableRepository<E, SearchInput, SearchOutput>
+  extends BaseRepositoryTypes<E> {
   sortableFields: string[];
   search(props: SearchInput): Promise<SearchOutput>;
 }

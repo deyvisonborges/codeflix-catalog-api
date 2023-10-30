@@ -1,4 +1,3 @@
-import { BaseModel } from '../../../shared/model/base.model';
 import { InMemoryRepository } from '../../../shared/repository/in-memory.repository';
 
 type StubModelProps = {
@@ -7,13 +6,12 @@ type StubModelProps = {
   description: string;
 };
 
-class StubModel extends BaseModel implements StubModelProps {
+class StubModel implements StubModelProps {
   id: string;
   name: string;
   description: string;
 
   constructor(props: StubModelProps) {
-    super();
     Object.assign(this, props);
   }
 }

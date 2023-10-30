@@ -1,7 +1,10 @@
-import { BaseModel } from '../model/base.model';
 import { BaseRepositoryTypes } from './base.repository.type';
 
-export abstract class InMemoryRepository<E extends BaseModel>
+class StubEntity {
+  id?: string;
+}
+
+export abstract class InMemoryRepository<E extends StubEntity>
   implements BaseRepositoryTypes<E>
 {
   items: E[] = [];

@@ -5,6 +5,13 @@ export interface BaseRepositoryTypes<E> {
   delete(entityId: string): Promise<void>;
   findById(entityId: string): Promise<E | null>;
   findAll(): Promise<E[]>;
+
+  // More generics interfaces
+  /** @link https://github.com/prisma/prisma/discussions/3929 */
+  // aggregate?: ()
+  // findMany?: ()
+  // updateMany?: ()
+  // upinsert?: ()
 }
 
 export interface SearchableRepository<E, SearchInput, SearchOutput>

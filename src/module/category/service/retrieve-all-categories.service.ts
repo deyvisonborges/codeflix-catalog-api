@@ -1,0 +1,19 @@
+import { SearchParamsProps } from 'src/shared/repository/search-params';
+import { BaseService } from '../../../shared/service/base.service';
+import { CategoryRepository } from '../repository/category.repository';
+import { CategoryModel } from '../category.model';
+
+type Input = SearchParamsProps;
+type Output = { items: CategoryModel[] };
+
+export class RetrieveAllCategories implements BaseService<Input, Output> {
+  constructor(private categoryRepo: CategoryRepository) {}
+
+  // WIP: adicionar paginacao e filtros no futuro
+  async execute(input: Input): Promise<Output> {
+    const searchResult = await this.categoryRepo.findAll();
+    return {
+      items: [...searchResult],
+    };
+  }
+}

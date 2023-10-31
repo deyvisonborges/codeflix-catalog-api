@@ -51,4 +51,8 @@ export class Validator<Entity> {
     const pattern = new RegExp('^(.+)@(\\S+)$');
     return pattern.test(email);
   }
+
+  clearErrors(): void {
+    this.errors.clear();
+  }
 }

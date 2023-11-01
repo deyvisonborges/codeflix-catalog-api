@@ -1,4 +1,4 @@
-import { SearchParamsProps } from 'src/shared/repository/search-params';
+import { SearchParamsProps } from 'src/core/shared/repository/search-params';
 import { BaseService } from '../../../shared/service/base.service';
 import { CategoryRepository } from '../repository/category.repository';
 import { CategoryModel } from '../category.model';

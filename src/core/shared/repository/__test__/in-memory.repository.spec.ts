@@ -1,4 +1,4 @@
-import { InMemoryRepository } from '../../../shared/repository/in-memory.repository';
+import { InMemoryRepository } from '../in-memory.repository';
 
 type StubModelProps = {
   id: string;

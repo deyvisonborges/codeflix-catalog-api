@@ -14,7 +14,7 @@ export class Validator<Entity> {
     }
   }
 
-  hasMin(attribute: keyof Entity, value: string, length: number) {
+  hasMin(attribute: keyof Entity, value: string, length: number): void {
     if (value !== null && value.length < length) {
       this.addError(
         attribute,
@@ -32,13 +32,13 @@ export class Validator<Entity> {
     value: string,
     length: number,
     message: string,
-  ) {
+  ): void {
     if (value !== null && value.length > length) {
       this.addError(attribute, message);
     }
   }
 
-  isRequired(attribute: keyof Entity, value: string) {
+  isRequired(attribute: keyof Entity, value: string): void {
     if ([null, undefined, ''].includes(value) || !value) {
       this.addError(
         attribute,
@@ -47,7 +47,7 @@ export class Validator<Entity> {
     }
   }
 
-  isValidEmail(email: string) {
+  isValidEmail(email: string): boolean {
     const pattern = new RegExp('^(.+)@(\\S+)$');
     return pattern.test(email);
   }

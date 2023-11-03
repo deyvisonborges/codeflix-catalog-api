@@ -3,8 +3,9 @@ import {
   ConfigModuleOptions,
   ConfigModule as NestConfigModule,
 } from '@nestjs/config';
+import Joi from 'joi';
 import { join } from 'path';
-
+import { CONFIG_DB_SCHEMA } from './config.types';
 @Module({})
 export class ConfigModule extends NestConfigModule {
   static forRoot(options?: ConfigModuleOptions) {
@@ -17,6 +18,7 @@ export class ConfigModule extends NestConfigModule {
         join(process.cwd(), `envs`, `.env.${process.env.NODE_ENV}`),
         join(process.cwd(), `envs`, `.env`),
       ],
+      validationSchema: Joi.object({ ...CONFIG_DB_SCHEMA }),
       ...options,
     });
   }

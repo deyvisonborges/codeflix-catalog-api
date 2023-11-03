@@ -17,7 +17,7 @@ export type PrismaConfigType = {
 };
 
 export const CONFIG_DB_SCHEMA: StrictSchemaMap<DB_SCHEMA_TYPE> = {
-  DB_PROVIDER: Joi.string().required().valid('postgres', 'sqlite'),
+  DB_PROVIDER: Joi.string().required().valid('postgresql', 'sqlite'),
   DB_HOST: Joi.string().required(),
   DB_PORT: Joi.number()
     .integer()

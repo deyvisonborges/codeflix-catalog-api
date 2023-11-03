@@ -16,6 +16,10 @@ services:
     environment:
       - POSTGRES_USER=local
       - POSTGRES_PASSWORD=local
+    tmpfs:
+      - /var/lib/postgresql
+    security_opt:
+      - seccomp:unconfined
     volumes:
       - postgres:/var/lib/postgresql/data
     ports:

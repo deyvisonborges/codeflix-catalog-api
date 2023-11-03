@@ -34,5 +34,5 @@
 // });
 
 describe(``, () => {
-  test(``, () => console.log(`emoty`));
+  test(``, () => ({}));
 });

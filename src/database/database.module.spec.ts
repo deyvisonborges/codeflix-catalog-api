@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
 import { DatabaseModule } from './database.module';
-import { ConfigModule, ConfigService, getConfigToken } from '@nestjs/config'; // Importe o ConfigModule, ConfigService e getConfigToken
+import { ConfigModule, ConfigService } from '@nestjs/config'; // Importe o ConfigModule, ConfigService e getConfigToken
 
 describe(`Database Module Tests`, () => {
   describe(`sqlite connection`, () => {

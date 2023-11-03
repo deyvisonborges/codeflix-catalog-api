@@ -1,12 +1,11 @@
 import { Test } from '@nestjs/testing';
 import { DatabaseModule } from './database.module';
-import { ConfigModule } from '../config/config.module';
-import { getConfigToken } from '@nestjs/config';
+import { ConfigModule, ConfigService, getConfigToken } from '@nestjs/config'; // Importe o ConfigModule, ConfigService e getConfigToken
 
 describe(`Database Module Tests`, () => {
   describe(`sqlite connection`, () => {
     const configs = {
-      DATABASE_URL: 'file:./local.sqlite',
+      DB_URL: 'file:./local.sqlite',
     };
 
     it(`should be a sqlite connection`, async () => {
@@ -24,7 +23,8 @@ describe(`Database Module Tests`, () => {
       }).compile();
 
       const app = module.createNestApplication();
-      const connection = app.get(getConfigToken);
+      const configService = app.get<ConfigService>(ConfigService); // Obtenha o ConfigService
+      const connection = configService.get<string>('DB_URL'); // Obtenha a configuração 'DB_URL' do ConfigService
       expect(connection).toBeDefined();
     });
   });

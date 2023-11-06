@@ -2,17 +2,17 @@ import { BaseService } from '../../../shared/service/base.service';
 import { CategoryRepository } from '../repository/category.repository';
 import { CategoryModel, CategoryProps } from '../category.model';
 
-type CategoryInput = CategoryProps;
-type CategoryOutput = CategoryProps;
+export type CreateCategoryInput = CategoryProps;
+export type CreateCategoryOutput = CategoryProps;
 
 export class CreateCategoryService
-  implements BaseService<CategoryInput, CategoryOutput>
+  implements BaseService<CreateCategoryInput, CreateCategoryOutput>
 {
-  constructor(private readonly categoryRepo: CategoryRepository) {}
+  constructor(private categoryRepo: CategoryRepository) {}
 
-  async execute(input: CategoryInput): Promise<CategoryOutput> {
+  async execute(input: CreateCategoryInput): Promise<CreateCategoryOutput> {
     const entity = CategoryModel.create({ ...input });
-    await this.categoryRepo.insert(entity);
-    return { ...entity } as CategoryOutput;
+    await this.categoryRepo?.insert(entity);
+    return { ...entity } as CreateCategoryOutput;
   }
 }

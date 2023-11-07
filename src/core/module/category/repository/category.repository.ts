@@ -26,6 +26,7 @@ export class CategoryRepository implements BaseRepositoryTypes<CategoryProps> {
   }
 
   async findAll(): Promise<CategoryProps[]> {
+    console.log(await this.prismaService.category.findMany());
     return await this.prismaService.category.findMany();
   }
 }

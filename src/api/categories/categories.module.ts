@@ -3,10 +3,17 @@ import { CategoriesController } from './categories.controller';
 import { RetrieveAllCategoriesService } from 'src/core/module/category/service/retrieve-all-categories.service';
 import { CategoryRepository } from 'src/core/module/category/repository/category.repository';
 import { CreateCategoryService } from 'src/core/module/category/service/create-category.service';
+import { PrismaService } from 'src/database/prisma/prisma.service';
 
 @Module({
   controllers: [CategoriesController],
   providers: [
+    {
+      provide: CategoryRepository,
+      useFactory: (prismaService: PrismaService) => {
+        return new CategoryRepository(prismaService);
+      },
+    },
     {
       provide: CreateCategoryService,
       useFactory: (repo: CategoryRepository) => {

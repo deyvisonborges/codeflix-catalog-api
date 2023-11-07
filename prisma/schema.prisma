@@ -6,14 +6,16 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./local.sqlite"
+  provider = "postgresql"
+  url      = env("DB_URL")
 }
 
 model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
   name  String?
+
+  @@map("user")
 }
 
 model Category {
@@ -22,4 +24,6 @@ model Category {
   description String
   created_at  DateTime?
   updated_at  DateTime?
+
+  @@map("category")
 }

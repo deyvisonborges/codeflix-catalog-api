@@ -13,7 +13,7 @@ export class RetrieveAllCategoriesService
 
   // WIP: adicionar paginacao e filtros no futuro
   async execute(input: Input): Promise<Output> {
-    const searchResult = await this.categoryRepo?.findAll();
+    const searchResult = await this.categoryRepo.findAll();
     return {
       items: searchResult,
     };

@@ -17,6 +17,7 @@ export class CategoryModel implements CategoryProps {
   constructor(props: CategoryProps) {
     this.id = props.id || new UUID().toString();
     this.createdAt = props.createdAt ?? new Date();
+    this.updatedAt = props.updatedAt ?? new Date();
     this.isActive = props.isActive ?? true;
     Object.assign(this, props);
   }

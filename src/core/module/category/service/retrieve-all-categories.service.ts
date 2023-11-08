@@ -4,7 +4,7 @@ import { CategoryRepository } from '../repository/category.repository';
 import { CategoryProps } from '../category.model';
 
 type Input = SearchParamsProps;
-type Output = { items: CategoryProps[] };
+type Output = CategoryProps[];
 
 export class RetrieveAllCategoriesService
   implements BaseService<Input, Output>
@@ -13,9 +13,6 @@ export class RetrieveAllCategoriesService
 
   // WIP: adicionar paginacao e filtros no futuro
   async execute(input: Input): Promise<Output> {
-    const searchResult = await this.categoryRepo.findAll();
-    return {
-      items: searchResult,
-    };
+    return await this.categoryRepo?.findAll();
   }
 }

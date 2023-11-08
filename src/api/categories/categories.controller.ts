@@ -13,9 +13,14 @@ import { CreateCategoryDto } from './dto/create-category.dto';
 // import { UpdateCategoryDto } from './dto/update-category.dto';
 import { RetrieveAllCategoriesService } from 'src/core/module/category/service/retrieve-all-categories.service';
 import { CreateCategoryService } from 'src/core/module/category/service/create-category.service';
+import { CategoryRepository } from 'src/core/module/category/repository/category.repository';
 
 @Controller('categories')
 export class CategoriesController {
+  constructor(private repo: CategoryRepository) {
+    console.log(repo);
+  }
+
   @Inject(CreateCategoryService)
   private createCategoryService: CreateCategoryService;
 

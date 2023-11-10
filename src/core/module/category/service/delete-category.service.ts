@@ -7,10 +7,10 @@ type Input = Required<Pick<CategoryProps, `id`>>;
 type Output = void;
 
 export class DeleteCategoryService implements BaseService<Input, Output> {
-  constructor(private categoryRepo: CategoryRepository) {}
+  constructor(private readonly categoryRepo: CategoryRepository) {}
 
-  async execute(input: Input): Promise<Output> {
+  async execute(input: Input): Promise<void> {
     const uuid = new UUID(input.id);
-    await this.categoryRepo.delete(uuid.toString());
+    return await this.categoryRepo.delete(uuid.toString());
   }
 }

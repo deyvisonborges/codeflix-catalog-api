@@ -1,9 +1,21 @@
-import { Controller, Get, Post, Body, Inject } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Inject,
+  Delete,
+  Param,
+  HttpCode,
+  ParseUUIDPipe,
+} from '@nestjs/common';
 // import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 // import { UpdateCategoryDto } from './dto/update-category.dto';
-import { RetrieveAllCategoriesService } from 'src/core/module/category/service/retrieve-all-categories.service';
-import { CreateCategoryService } from 'src/core/module/category/service/create-category.service';
+import { RetrieveAllCategoriesService } from '../../core/module/category/service/retrieve-all-categories.service';
+import { CreateCategoryService } from '../../core/module/category/service/create-category.service';
+import { DeleteCategoryService } from '../../core/module/category/service/delete-category.service';
+import { RetrieveASingleCategory } from 'src/core/module/category/service/retrieve-a-single-category.service';
 
 @Controller('categories')
 export class CategoriesController {
@@ -12,6 +24,12 @@ export class CategoriesController {
 
   @Inject(RetrieveAllCategoriesService)
   private retrieveAllCategoriesService: RetrieveAllCategoriesService;
+
+  @Inject(DeleteCategoryService)
+  private deleteCategoryService: DeleteCategoryService;
+
+  @Inject(RetrieveASingleCategory)
+  private retrieveASingleCategory: RetrieveASingleCategory;
 
   @Post()
   async create(@Body() createCategoryDto: CreateCategoryDto) {
@@ -23,10 +41,26 @@ export class CategoriesController {
     return await this.retrieveAllCategoriesService.execute({});
   }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.categoriesService.findOne(+id);
-  // }
+  @HttpCode(204)
+  @Delete(':id')
+  async remove(
+    @Param(
+      'id',
+      new ParseUUIDPipe({
+        errorHttpStatusCode: 422,
+      }),
+    )
+    id: string,
+  ) {
+    return await this.deleteCategoryService.execute({ id: id });
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.retrieveASingleCategory.execute({
+      id: id,
+    });
+  }
 
   // @Patch(':id')
   // update(
@@ -34,10 +68,5 @@ export class CategoriesController {
   //   @Body() updateCategoryDto: UpdateCategoryDto,
   // ) {
   //   return this.categoriesService.update(+id, updateCategoryDto);
-  // }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.categoriesService.remove(+id);
   // }
 }

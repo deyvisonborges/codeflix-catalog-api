@@ -2,8 +2,9 @@ import { BaseService } from '../../../shared/service/base.service';
 import { CategoryRepository } from '../repository/category.repository';
 import { CategoryModel, CategoryProps } from '../category.model';
 import { Category } from '@prisma/client';
+import { BaseModelType } from 'src/core/shared/model/base.model';
 
-export type CreateCategoryInput = CategoryProps;
+export type CreateCategoryInput = Omit<CategoryProps, keyof BaseModelType>;
 export type CreateCategoryOutput = CategoryProps;
 
 export class CreateCategoryService

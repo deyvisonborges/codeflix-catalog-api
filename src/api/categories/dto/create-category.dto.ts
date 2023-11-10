@@ -3,8 +3,4 @@ import { CreateCategoryInput } from '../../../core/module/category/service/creat
 export class CreateCategoryDto implements CreateCategoryInput {
   name: string;
   description: string;
-  id?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-  isActive?: boolean;
 }

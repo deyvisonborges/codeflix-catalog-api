@@ -6,10 +6,6 @@ import {
 import { join } from 'path';
 @Module({})
 export class ConfigModule extends NestConfigModule {
-  constructor() {
-    super();
-    console.log(process.cwd(), `envs`, `.env`);
-  }
   static forRoot(options?: ConfigModuleOptions) {
     return super.forRoot({
       isGlobal: true,

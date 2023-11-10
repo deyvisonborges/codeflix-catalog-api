@@ -6,7 +6,7 @@ export class CategoryRepository implements BaseRepositoryTypes<CategoryProps> {
   constructor(private prismaService: PrismaService) {}
 
   async insert(entity: CategoryProps): Promise<void> {
-    await this.prismaService?.category.create({ data: entity });
+    await this.prismaService.category.create({ data: entity });
   }
 
   createMany(entity: CategoryProps[]): Promise<void> {
@@ -26,7 +26,6 @@ export class CategoryRepository implements BaseRepositoryTypes<CategoryProps> {
   }
 
   async findAll(): Promise<CategoryProps[]> {
-    console.log(await this.prismaService?.category.findMany());
-    return await this.prismaService?.category.findMany();
+    return await this.prismaService.category.findMany();
   }
 }

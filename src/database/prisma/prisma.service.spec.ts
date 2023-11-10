@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Test, TestingModule } from '@nestjs/testing';
 import { PrismaService } from './prisma.service';
 import { ConfigService } from '@nestjs/config';

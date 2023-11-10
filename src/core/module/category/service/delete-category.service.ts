@@ -2,6 +2,7 @@ import { BaseService } from '../../../shared/service/base.service';
 import { CategoryProps } from '../category.model';
 import { UUID } from '../../../shared/model/uuid.model';
 import { CategoryRepository } from '../repository/category.repository';
+import { NotFoundException } from '@nestjs/common';
 
 type Input = Required<Pick<CategoryProps, `id`>>;
 type Output = void;
@@ -11,6 +12,9 @@ export class DeleteCategoryService implements BaseService<Input, Output> {
 
   async execute(input: Input): Promise<void> {
     const uuid = new UUID(input.id);
-    return await this.categoryRepo.delete(uuid.toString());
+    const category = await this.categoryRepo.findById(uuid.toString());
+    if (!category)
+      new NotFoundException(`Not found category with uuid ${uuid.toString()}`);
+    await this.categoryRepo.delete(uuid.toString());
   }
 }

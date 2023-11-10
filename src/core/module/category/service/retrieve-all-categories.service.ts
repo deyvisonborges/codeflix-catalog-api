@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { SearchParamsProps } from 'src/core/shared/repository/search-params';
 import { BaseService } from '../../../shared/service/base.service';
 import { CategoryRepository } from '../repository/category.repository';

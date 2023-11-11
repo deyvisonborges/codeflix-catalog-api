@@ -13,8 +13,13 @@ export class DeleteCategoryService implements BaseService<Input, Output> {
   async execute(input: Input): Promise<void> {
     const uuid = new UUID(input.id);
     const category = await this.categoryRepo.findById(uuid.toString());
-    if (!category)
-      new NotFoundException(`Not found category with uuid ${uuid.toString()}`);
+
+    if (category === null) {
+      throw new NotFoundException(
+        `Not found category with uuid ${uuid.toString()}`,
+      );
+    }
+
     await this.categoryRepo.delete(uuid.toString());
   }
 }

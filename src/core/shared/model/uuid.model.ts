@@ -6,7 +6,6 @@ export class UUID {
   constructor(id?: string) {
     this.id = id || uuidv4();
     this.validate();
-    console.log(`entrei no construtor`);
   }
 
   private validate() {

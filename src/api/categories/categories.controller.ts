@@ -8,14 +8,15 @@ import {
   Param,
   HttpCode,
   ParseUUIDPipe,
+  Patch,
 } from '@nestjs/common';
-// import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
-// import { UpdateCategoryDto } from './dto/update-category.dto';
 import { RetrieveAllCategoriesService } from '../../core/module/category/service/retrieve-all-categories.service';
 import { CreateCategoryService } from '../../core/module/category/service/create-category.service';
 import { DeleteCategoryService } from '../../core/module/category/service/delete-category.service';
 import { RetrieveASingleCategory } from 'src/core/module/category/service/retrieve-a-single-category.service';
+import { UpdateCategoryService } from 'src/core/module/category/service/update-category.service';
+import { UpdateCategoryDto } from './dto/update-category.dto';
 
 @Controller('categories')
 export class CategoriesController {
@@ -30,6 +31,9 @@ export class CategoriesController {
 
   @Inject(RetrieveASingleCategory)
   private retrieveASingleCategory: RetrieveASingleCategory;
+
+  @Inject(UpdateCategoryService)
+  private updateCategoryService: UpdateCategoryService;
 
   @Post()
   async create(@Body() createCategoryDto: CreateCategoryDto) {
@@ -62,11 +66,14 @@ export class CategoriesController {
     });
   }
 
-  // @Patch(':id')
-  // update(
-  //   @Param('id') id: string,
-  //   @Body() updateCategoryDto: UpdateCategoryDto,
-  // ) {
-  //   return this.categoriesService.update(+id, updateCategoryDto);
-  // }
+  @Patch(':id')
+  update(
+    @Param('id', new ParseUUIDPipe({ errorHttpStatusCode: 422 })) id: string,
+    @Body() updateCategoryDto: UpdateCategoryDto,
+  ) {
+    return this.updateCategoryService.execute({
+      id: id,
+      ...updateCategoryDto,
+    });
+  }
 }

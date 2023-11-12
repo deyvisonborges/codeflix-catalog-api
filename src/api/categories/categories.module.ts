@@ -7,6 +7,7 @@ import { PrismaService } from 'src/database/prisma/prisma.service';
 import { PrismaModule } from 'src/database/prisma/prisma.module';
 import { DeleteCategoryService } from 'src/core/module/category/service/delete-category.service';
 import { RetrieveASingleCategory } from 'src/core/module/category/service/retrieve-a-single-category.service';
+import { UpdateCategoryService } from 'src/core/module/category/service/update-category.service';
 
 @Module({
   imports: [PrismaModule],
@@ -44,6 +45,13 @@ import { RetrieveASingleCategory } from 'src/core/module/category/service/retrie
       provide: RetrieveASingleCategory,
       useFactory: (repo: CategoryRepository) => {
         return new RetrieveASingleCategory(repo);
+      },
+      inject: [CategoryRepository],
+    },
+    {
+      provide: UpdateCategoryService,
+      useFactory: (repo: CategoryRepository) => {
+        return new UpdateCategoryService(repo);
       },
       inject: [CategoryRepository],
     },

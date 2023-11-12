@@ -17,7 +17,9 @@ import { DeleteCategoryService } from '../../core/module/category/service/delete
 import { RetrieveASingleCategory } from 'src/core/module/category/service/retrieve-a-single-category.service';
 import { UpdateCategoryService } from 'src/core/module/category/service/update-category.service';
 import { UpdateCategoryDto } from './dto/update-category.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags(`Categories`)
 @Controller('categories')
 export class CategoriesController {
   @Inject(CreateCategoryService)

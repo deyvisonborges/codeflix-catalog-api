@@ -1,3 +1,4 @@
+import { NotFoundException } from '@nestjs/common';
 import { UUID } from '../../../shared/model/uuid.model';
 import { BaseService } from '../../../shared/service/base.service';
 import { CategoryProps } from '../category.model';
@@ -14,7 +15,7 @@ export class RetrieveASingleCategory implements BaseService<Input, Output> {
     const category = await this.categoryRepo.findById(uuid.toString());
 
     if (!category) {
-      throw new Error(`Not found category with uuid: ` + input.id);
+      throw new NotFoundException(`Not found category with uuid: ` + input.id);
     }
 
     return {
